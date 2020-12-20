@@ -1,0 +1,17 @@
+language: python 
+python: 
+  - "3.6"
+
+services:
+  - docker 
+
+# script that travis will run before automation commands
+before_script: pip install docker-compose 
+
+# for push to github, travis will spin up a python server
+# make docker service available
+# use pip to install docker-compose 
+# run script with docker-compose 
+# if it fails, itll send a notification to email
+script:
+  - docker-compose run app sh -c "python manage.py test && flake8"
